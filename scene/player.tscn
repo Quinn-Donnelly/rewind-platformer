@@ -50,6 +50,7 @@ animations = [{
 size = Vector2(53, 66)
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 17
 script = ExtResource("1_oh5ij")
 marker = ExtResource("2_g2vtq")
 
@@ -66,5 +67,8 @@ shape = SubResource("RectangleShape2D_xo3ru")
 [node name="RewindCaptureTimer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
+
+[node name="ThrowableLocation" type="Node2D" parent="."]
+position = Vector2(36, 6)
 
 [connection signal="timeout" from="RewindCaptureTimer" to="." method="_on_rewind_capture_timer_timeout"]

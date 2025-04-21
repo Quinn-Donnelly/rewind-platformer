@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvq6vm62f4juk"]
+
+[ext_resource type="Texture2D" uid="uid://b4y6fbxackgll" path="res://art/PNG/Items/platformPack_item012.png" id="1_ntmuv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xr527"]
+size = Vector2(45, 27)
+
+[node name="Throwable" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 18
+gravity_scale = 0.5
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_xr527")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ntmuv")
