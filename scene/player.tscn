@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cc0oap1ildecq"]
+[gd_scene load_steps=13 format=3 uid="uid://cc0oap1ildecq"]
 
 [ext_resource type="Texture2D" uid="uid://cdx645opwjrup" path="res://art/PNG/Characters/platformChar_idle.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://8f1tq71utrpu" path="res://script/player.gd" id="1_oh5ij"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://d2r2u75017h5x" path="res://art/PNG/Characters/platformChar_jump.png" id="4_g2vtq"]
 [ext_resource type="Texture2D" uid="uid://d2nermtpwiwkc" path="res://art/PNG/Characters/platformChar_walk1.png" id="5_2fvbb"]
 [ext_resource type="Texture2D" uid="uid://bpqi4s5eeupwo" path="res://art/PNG/Characters/platformChar_walk2.png" id="6_ml7e8"]
+[ext_resource type="Script" uid="uid://j065ud6n4fsp" path="res://script/movement-state-machine/movement-state-machine.gd" id="8_ml7e8"]
+[ext_resource type="Script" uid="uid://nl8e0m1osfb2" path="res://script/movement-state-machine/idle-state.gd" id="9_ihjo1"]
+[ext_resource type="Script" uid="uid://dv06gsx2xabai" path="res://script/movement-state-machine/fall-state.gd" id="10_dk1vr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_onrkg"]
 animations = [{
@@ -70,5 +73,14 @@ autostart = true
 
 [node name="ThrowableLocation" type="Node2D" parent="."]
 position = Vector2(36, 6)
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("8_ml7e8")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("9_ihjo1")
+
+[node name="Fall" type="Node" parent="StateMachine"]
+script = ExtResource("10_dk1vr")
 
 [connection signal="timeout" from="RewindCaptureTimer" to="." method="_on_rewind_capture_timer_timeout"]

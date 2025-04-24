@@ -6,6 +6,7 @@ const JUMP_VELOCITY = -500.0
 const FALLING_IMPULSE = -10.0
 const REWIND_SIZE = 5
 var previous_positions: RingQueue
+var movement_state_machine: StateMachine
 
 @export var marker: PackedScene
 @export var throwable: PackedScene
@@ -18,7 +19,10 @@ func _init() -> void:
 	previous_positions.init(REWIND_SIZE)
 	throwable_information = RingQueue.new()
 	throwable_information.init(MAX_THROWABLE)
-	
+
+func _ready() -> void:
+	$StateMachine.change_state("Idle")
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
