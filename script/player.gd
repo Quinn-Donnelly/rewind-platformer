@@ -2,7 +2,6 @@ extends CharacterBody2D
 const RingQueue = preload("res://script/ring_queue.gd")
 
 const SPEED = 300.0
-const JUMP_VELOCITY = -500.0
 const FALLING_IMPULSE = -10.0
 const REWIND_SIZE = 5
 var previous_positions: RingQueue
@@ -29,10 +28,6 @@ func _physics_process(delta: float) -> void:
 		var gravity = get_gravity()
 		gravity.y += FALLING_IMPULSE
 		velocity += gravity * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
 
 	if Input.is_action_just_pressed("rewind"):
 		var new_position = previous_positions.pop()

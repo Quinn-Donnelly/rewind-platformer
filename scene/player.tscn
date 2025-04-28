@@ -83,4 +83,9 @@ script = ExtResource("9_ihjo1")
 [node name="Fall" type="Node" parent="StateMachine"]
 script = ExtResource("10_dk1vr")
 
+[node name="JumpBufferTimer" type="Timer" parent="StateMachine/Fall"]
+wait_time = 0.05
+one_shot = true
+
 [connection signal="timeout" from="RewindCaptureTimer" to="." method="_on_rewind_capture_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Fall/JumpBufferTimer" to="StateMachine/Fall" method="_on_fall_timer_timeout"]
