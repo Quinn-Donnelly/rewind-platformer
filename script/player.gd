@@ -1,7 +1,7 @@
 extends CharacterBody2D
 const RingQueue = preload("res://script/ring_queue.gd")
 
-const SPEED = 300.0
+const SPEED = 250.0
 const FALLING_IMPULSE = -10.0
 const REWIND_SIZE = 5
 var previous_positions: RingQueue
