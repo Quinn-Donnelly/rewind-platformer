@@ -4,11 +4,11 @@ class_name Fall
 var bufferedJump: bool = true
 var initial_height: float
 const JUMP_VELOCITY = -400.0
-const MAX_JUMP_HEIGHT: float = 180
 var is_holding_jump: bool = false
 var frames_held: float = 0
+const MAX_JUMP_HEIGHT: float = 150
 const MAX_JUMP_HOLD: float = 0.35
-const MIN_JUMP_HOLD: float = 0.15;
+const MIN_JUMP_HOLD: float = 0.25;
 
 func enter(previous_state: State) -> void:
 	bufferedJump = false
