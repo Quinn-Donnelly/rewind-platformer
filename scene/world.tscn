@@ -2,100 +2,27 @@
 
 [ext_resource type="PackedScene" uid="uid://cc0oap1ildecq" path="res://scene/player.tscn" id="1_pjass"]
 [ext_resource type="PackedScene" uid="uid://dvq6vm62f4juk" path="res://scene/throwable.tscn" id="2_txmk2"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gv5m4"]
-size = Vector2(1176, 18)
-
-[sub_resource type="Gradient" id="Gradient_f3sb7"]
-offsets = PackedFloat32Array(0, 0.038961, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.922078, 0.922078, 0.922078, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_fj7yv"]
-gradient = SubResource("Gradient_f3sb7")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f3sb7"]
-size = Vector2(162, 17)
+[ext_resource type="Script" uid="uid://dlbb0rqmi6ljg" path="res://scene/camera.gd" id="4_emkrx"]
+[ext_resource type="PackedScene" uid="uid://bej8v2maxefne" path="res://scene/Levels/level_1.tscn" id="4_m5mgf"]
+[ext_resource type="PackedScene" uid="uid://dq1lp2w8aecji" path="res://scene/Levels/level_0.tscn" id="5_0tg4p"]
+[ext_resource type="PackedScene" uid="uid://dn2y0c3nl8tvd" path="res://scene/Levels/level_3.tscn" id="6_hcb8y"]
 
 [node name="World" type="Node"]
 
-[node name="Platforms" type="Node" parent="."]
-
-[node name="Floor" type="StaticBody2D" parent="Platforms"]
-position = Vector2(10, 638)
-collision_layer = 16
-collision_mask = 3
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Floor"]
-position = Vector2(578, 1)
-shape = SubResource("RectangleShape2D_gv5m4")
-
-[node name="Sprite2D" type="Sprite2D" parent="Platforms/Floor"]
-position = Vector2(579.125, 0.624995)
-scale = Vector2(18.4102, 0.292969)
-texture = SubResource("GradientTexture2D_fj7yv")
-
-[node name="Floor2" type="StaticBody2D" parent="Platforms"]
-position = Vector2(144, 520)
-collision_layer = 16
-collision_mask = 3
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Platforms/Floor2"]
-position = Vector2(70.9999, -0.375004)
-scale = Vector2(2.53125, 0.261719)
-texture = SubResource("GradientTexture2D_fj7yv")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Floor2"]
-position = Vector2(71, -0.5)
-shape = SubResource("RectangleShape2D_f3sb7")
-
-[node name="Floor3" type="StaticBody2D" parent="Platforms"]
-position = Vector2(385, 440)
-collision_layer = 16
-collision_mask = 3
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Platforms/Floor3"]
-position = Vector2(70.9999, -0.375004)
-scale = Vector2(2.53125, 0.261719)
-texture = SubResource("GradientTexture2D_fj7yv")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Floor3"]
-position = Vector2(71, -0.5)
-shape = SubResource("RectangleShape2D_f3sb7")
-
-[node name="Floor5" type="StaticBody2D" parent="Platforms"]
-position = Vector2(1149, 620)
-rotation = -1.58004
-collision_layer = 16
-collision_mask = 3
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Platforms/Floor5"]
-position = Vector2(70.9999, -0.375004)
-scale = Vector2(2.53125, 0.261719)
-texture = SubResource("GradientTexture2D_fj7yv")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Floor5"]
-position = Vector2(71, -0.5)
-shape = SubResource("RectangleShape2D_f3sb7")
-
-[node name="Floor4" type="StaticBody2D" parent="Platforms"]
-position = Vector2(151, 334)
-collision_layer = 16
-collision_mask = 3
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Platforms/Floor4"]
-position = Vector2(70.9999, -0.375004)
-scale = Vector2(2.53125, 0.261719)
-texture = SubResource("GradientTexture2D_fj7yv")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Floor4"]
-position = Vector2(71, -0.5)
-shape = SubResource("RectangleShape2D_f3sb7")
-
 [node name="Player" parent="." instance=ExtResource("1_pjass")]
-position = Vector2(61, 574)
+position = Vector2(41, 507)
 throwable = ExtResource("2_txmk2")
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+script = ExtResource("4_emkrx")
+
+[node name="Levels" type="Node" parent="."]
+
+[node name="Level 1" parent="Levels" instance=ExtResource("4_m5mgf")]
+position = Vector2(1152, 0)
+
+[node name="Level 0" parent="Levels" instance=ExtResource("5_0tg4p")]
+
+[node name="Level 3" parent="Levels" instance=ExtResource("6_hcb8y")]
+position = Vector2(2304, 0)
