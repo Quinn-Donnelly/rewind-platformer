@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=4 uid="uid://dq1lp2w8aecji"]
+[gd_scene load_steps=5 format=4 uid="uid://dq1lp2w8aecji"]
 
-[ext_resource type="Script" uid="uid://cyov7cs62c22x" path="res://scene/Levels/Level.gd" id="1_l6gr5"]
+[ext_resource type="Script" uid="uid://cyov7cs62c22x" path="res://script/Level.gd" id="1_l6gr5"]
 [ext_resource type="TileSet" uid="uid://cangq3q54pkc8" path="res://art/world.tres" id="2_4a17f"]
+[ext_resource type="PackedScene" uid="uid://yd61hcs1uyca" path="res://scene/death_zone.tscn" id="3_4a17f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ft8ak"]
 size = Vector2(1152, 648)
@@ -21,5 +22,9 @@ position = Vector2(573, 324)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBoundary"]
 position = Vector2(576, 324)
 shape = SubResource("RectangleShape2D_ft8ak")
+
+[node name="DeathZone" parent="." instance=ExtResource("3_4a17f")]
+position = Vector2(327, 700)
+scale = Vector2(87.8235, 3.21525)
 
 [connection signal="body_entered" from="LevelBoundary" to="." method="_on_level_boundary_body_entered"]

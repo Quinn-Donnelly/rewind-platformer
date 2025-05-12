@@ -2,6 +2,7 @@ extends State
 class_name Idle
 
 func enter(previous_state: State) -> void:
+	$"../../Charecter".animation = "idle"
 	if previous_state is Fall and previous_state.bufferedJump:
 		state_machine.states["Fall"].jump()
 		state_machine.change_state("Fall")

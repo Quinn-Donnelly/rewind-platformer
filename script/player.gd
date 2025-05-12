@@ -1,6 +1,8 @@
 extends CharacterBody2D
 const RingQueue = preload("res://script/ring_queue.gd")
 
+signal death
+
 const SPEED = 250.0
 const FALLING_IMPULSE = -10.0
 const REWIND_SIZE = 5
@@ -64,3 +66,11 @@ func _on_rewind_capture_timer_timeout() -> void:
 	var mark = marker.instantiate()
 	mark.position = position
 	get_parent().add_child(mark)
+
+func hit() -> void:
+	death.emit()
+	queue_free()
+	
+func _on_world_win() -> void:
+	print("I'm triggered")
+	$Charecter.animation = "celebrate"

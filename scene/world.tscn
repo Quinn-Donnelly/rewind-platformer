@@ -1,13 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://bw1l6gpxxakm5"]
+[gd_scene load_steps=9 format=3 uid="uid://bw1l6gpxxakm5"]
 
+[ext_resource type="Script" uid="uid://bdxvdi0i7ryd1" path="res://script/GameManager.gd" id="1_hcb8y"]
 [ext_resource type="PackedScene" uid="uid://cc0oap1ildecq" path="res://scene/player.tscn" id="1_pjass"]
 [ext_resource type="PackedScene" uid="uid://dvq6vm62f4juk" path="res://scene/throwable.tscn" id="2_txmk2"]
-[ext_resource type="Script" uid="uid://dlbb0rqmi6ljg" path="res://scene/camera.gd" id="4_emkrx"]
+[ext_resource type="Script" uid="uid://dlbb0rqmi6ljg" path="res://script/camera.gd" id="4_emkrx"]
 [ext_resource type="PackedScene" uid="uid://bej8v2maxefne" path="res://scene/Levels/level_1.tscn" id="4_m5mgf"]
 [ext_resource type="PackedScene" uid="uid://dq1lp2w8aecji" path="res://scene/Levels/level_0.tscn" id="5_0tg4p"]
+[ext_resource type="PackedScene" uid="uid://djdyjw67hqg5r" path="res://scene/win_flag.tscn" id="5_y3jn2"]
 [ext_resource type="PackedScene" uid="uid://dn2y0c3nl8tvd" path="res://scene/Levels/level_3.tscn" id="6_hcb8y"]
 
 [node name="World" type="Node"]
+script = ExtResource("1_hcb8y")
 
 [node name="Player" parent="." instance=ExtResource("1_pjass")]
 position = Vector2(41, 507)
@@ -16,6 +19,52 @@ throwable = ExtResource("2_txmk2")
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(576, 324)
 script = ExtResource("4_emkrx")
+
+[node name="UI" type="CanvasLayer" parent="Camera"]
+
+[node name="GameOverLabel" type="Label" parent="Camera/UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 4
+text = "Gamer Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RespawnDelayTimer" type="Timer" parent="Camera/UI"]
+wait_time = 2.0
+
+[node name="RestartLabel" type="Label" parent="Camera/UI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -334.0
+offset_right = 100.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+text = "Press Enter or A to restart"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WinLabel" type="Label" parent="Camera/UI"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.0
+offset_top = -11.5
+offset_right = 34.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "You Win!"
 
 [node name="Levels" type="Node" parent="."]
 
@@ -26,3 +75,12 @@ position = Vector2(1152, 0)
 
 [node name="Level 3" parent="Levels" instance=ExtResource("6_hcb8y")]
 position = Vector2(2304, 0)
+
+[node name="WinFlag" parent="." instance=ExtResource("5_y3jn2")]
+z_index = -1
+position = Vector2(3264, 160)
+
+[connection signal="win" from="." to="Player" method="_on_world_win"]
+[connection signal="death" from="Player" to="." method="_on_player_death"]
+[connection signal="timeout" from="Camera/UI/RespawnDelayTimer" to="." method="_on_respawn_delay_timer_timeout"]
+[connection signal="win" from="WinFlag" to="." method="_on_win_flag_win"]
