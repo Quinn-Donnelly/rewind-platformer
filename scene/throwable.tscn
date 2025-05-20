@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dvq6vm62f4juk"]
+[gd_scene load_steps=4 format=3 uid="uid://dvq6vm62f4juk"]
 
 [ext_resource type="Texture2D" uid="uid://b4y6fbxackgll" path="res://art/PNG/Items/platformPack_item012.png" id="1_ntmuv"]
+[ext_resource type="Script" uid="uid://dne1qmml7m8qh" path="res://script/flip.gd" id="1_xr527"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xr527"]
 size = Vector2(45, 27)
@@ -9,6 +10,8 @@ size = Vector2(45, 27)
 collision_layer = 2
 collision_mask = 18
 gravity_scale = 0.5
+script = ExtResource("1_xr527")
+sprite_path = NodePath("Sprite2D")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

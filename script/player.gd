@@ -39,8 +39,18 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("throw"):
 		var item = throwable.instantiate()
+		item.setup("Sprite2D", false)
 		item.position = $ThrowableLocation.global_position
-		var direction = Vector2.RIGHT
+		
+		var direction: Vector2
+		if facing_right:
+			direction = Vector2.RIGHT
+		else:
+			direction = Vector2.LEFT
+			if item.has_method("flip"):
+				item.flip(true)
+			
+			
 		item.linear_velocity = direction * THROWABLE_IMPULSE
 		throwable_information.add_item(item)
 		get_parent().add_child(item)

@@ -72,7 +72,7 @@ wait_time = 3.0
 autostart = true
 
 [node name="ThrowableLocation" type="Node2D" parent="."]
-position = Vector2(36, 6)
+position = Vector2(0, 6)
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("8_ml7e8")
