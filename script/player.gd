@@ -8,6 +8,7 @@ const FALLING_IMPULSE = -10.0
 const REWIND_SIZE = 5
 var previous_positions: RingQueue
 var movement_state_machine: StateMachine
+var facing_right = true
 
 @export var marker: PackedScene
 @export var throwable: PackedScene
@@ -58,6 +59,13 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+	
+	if direction > 0:
+		facing_right = true
+	if direction < 0:
+		facing_right = false
+	
+	$Charecter.flip_h = not facing_right
 
 	move_and_slide()
 
