@@ -35,6 +35,10 @@ func _input(event: InputEvent) -> void:
 	if is_game_over and Input.is_action_just_pressed("restart"):
 		get_tree().reload_current_scene()
 
-
 func _on_win_flag_win() -> void:
 	win_game()
+
+func addScore(amount: int) -> int:
+	score += amount
+	$Camera/UI/ScoreLabel.text = "Score: %d" % score
+	return score

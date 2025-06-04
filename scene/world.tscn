@@ -66,6 +66,14 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "You Win!"
 
+[node name="ScoreLabel" type="Label" parent="Camera/UI"]
+offset_left = 992.0
+offset_top = 16.0
+offset_right = 1136.0
+offset_bottom = 40.0
+text = "Score: 0"
+horizontal_alignment = 2
+
 [node name="Levels" type="Node" parent="."]
 
 [node name="Level 1" parent="Levels" instance=ExtResource("4_m5mgf")]
