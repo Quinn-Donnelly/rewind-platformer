@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bw1l6gpxxakm5"]
+[gd_scene load_steps=10 format=3 uid="uid://bw1l6gpxxakm5"]
 
 [ext_resource type="Script" uid="uid://bdxvdi0i7ryd1" path="res://script/GameManager.gd" id="1_hcb8y"]
 [ext_resource type="PackedScene" uid="uid://cc0oap1ildecq" path="res://scene/player.tscn" id="1_pjass"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dq1lp2w8aecji" path="res://scene/Levels/level_0.tscn" id="5_0tg4p"]
 [ext_resource type="PackedScene" uid="uid://djdyjw67hqg5r" path="res://scene/win_flag.tscn" id="5_y3jn2"]
 [ext_resource type="PackedScene" uid="uid://dn2y0c3nl8tvd" path="res://scene/Levels/level_3.tscn" id="6_hcb8y"]
+[ext_resource type="PackedScene" uid="uid://ofeddhxi1jcj" path="res://scene/collectable.tscn" id="9_yur6x"]
 
 [node name="World" type="Node"]
 script = ExtResource("1_hcb8y")
@@ -74,6 +75,11 @@ offset_bottom = 40.0
 text = "Score: 0"
 horizontal_alignment = 2
 
+[node name="GameTime" type="Label" parent="Camera/UI"]
+offset_right = 89.0
+offset_bottom = 23.0
+text = "Time"
+
 [node name="Levels" type="Node" parent="."]
 
 [node name="Level 1" parent="Levels" instance=ExtResource("4_m5mgf")]
@@ -88,7 +94,12 @@ position = Vector2(2304, 0)
 z_index = -1
 position = Vector2(3264, 160)
 
+[node name="Collectable" parent="." instance=ExtResource("9_yur6x")]
+position = Vector2(3400, 536)
+score = 5
+
 [connection signal="win" from="." to="Player" method="_on_world_win"]
 [connection signal="death" from="Player" to="." method="_on_player_death"]
 [connection signal="timeout" from="Camera/UI/RespawnDelayTimer" to="." method="_on_respawn_delay_timer_timeout"]
 [connection signal="win" from="WinFlag" to="." method="_on_win_flag_win"]
+[connection signal="scored" from="Collectable" to="." method="_on_collectable_scored"]

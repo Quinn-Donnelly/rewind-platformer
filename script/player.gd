@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name player
 const RingQueue = preload("res://script/ring_queue.gd")
 
 signal death

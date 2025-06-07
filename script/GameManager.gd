@@ -2,6 +2,8 @@ extends Node
 
 signal win
 
+var COLLECTABLE_SCORE_MULT = 5.0
+
 var score: int = 0 
 var is_game_over: bool = false
 var stage_time: int = 0
@@ -10,6 +12,12 @@ func _ready() -> void:
 	$Camera/UI/RestartLabel.visible = false
 	$Camera/UI/GameOverLabel.visible = false
 	start_game()
+	
+	
+func _process(delta: float) -> void:
+	if not is_game_over:
+		var time_in_secs = round((Time.get_ticks_msec() - stage_time) / 1000)
+		$Camera/UI/GameTime.text = "Time: %s" % time_in_secs
 
 func start_game() -> void:
 	stage_time = Time.get_ticks_msec()
@@ -23,10 +31,16 @@ func game_over() -> void:
 func win_game() -> void:
 	# TODO: refactor stage_time name
 	var duration = Time.get_ticks_msec() - stage_time
-	var expected_time = 10000.0
+	var expected_time = 10.0
 	var stage_time_expected_points = 100.0
-	var time_score = stage_time_expected_points * (expected_time / float(duration))
+	var time_score = 0
+	
+	if duration < expected_time:
+		time_score =  stage_time_expected_points * (2 - float(duration) / float(expected_time))
+	else:
+		time_score = stage_time_expected_points * (float(expected_time) / float(duration/1000))
 	addScore(time_score)
+	
 	
 	win.emit()
 	is_game_over = true
@@ -50,7 +64,12 @@ func _input(event: InputEvent) -> void:
 func _on_win_flag_win() -> void:
 	win_game()
 
-func addScore(amount: int) -> int:
-	score += amount
+func addScore(amount: float) -> int:
+	var amount_to_add = int(floor(amount))
+	score += amount_to_add
 	$Camera/UI/ScoreLabel.text = "Score: %d" % score
 	return score
+
+
+func _on_collectable_scored(points) -> void:
+	addScore(points * COLLECTABLE_SCORE_MULT)
