@@ -12,7 +12,7 @@ func _ready() -> void:
 	$Camera/UI/RestartLabel.visible = false
 	$Camera/UI/GameOverLabel.visible = false
 	start_game()
-	
+	$"/root/Score".loadScores()
 	
 func _process(delta: float) -> void:
 	if not is_game_over:
@@ -47,7 +47,9 @@ func win_game() -> void:
 	$Player.set_process(false)
 	$Player.set_physics_process(false)
 	$Camera/UI/WinLabel.visible = true
-	$Camera/UI/RespawnDelayTimer.start()
+	$Camera/UI/RespawnDelayTimer.start();
+	$"/root/Score".submitScore(score)
+	$"/root/Score".writeScores()
 
 func _on_player_death() -> void:
 	game_over()
