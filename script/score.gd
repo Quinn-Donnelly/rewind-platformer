@@ -18,6 +18,9 @@ class Ranking:
 	static func from_dict(record: Dictionary) -> Ranking:
 		return Ranking.new(record["name"], record["score"])
 
+func _ready() -> void:
+	loadScores()
+
 func rankScore(score) -> int:
 	var rank = len(scoreboard)
 	while rank > 0:

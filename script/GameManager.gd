@@ -12,7 +12,6 @@ func _ready() -> void:
 	$Camera/UI/RestartLabel.visible = false
 	$Camera/UI/GameOverLabel.visible = false
 	start_game()
-	$"/root/Score".loadScores()
 	
 func _process(delta: float) -> void:
 	if not is_game_over:
