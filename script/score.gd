@@ -20,6 +20,7 @@ class Ranking:
 
 func _ready() -> void:
 	loadScores()
+	
 
 func rankScore(score) -> int:
 	var rank = len(scoreboard)
