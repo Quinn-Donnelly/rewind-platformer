@@ -1,8 +1,9 @@
 extends Node
 
 var scoreboard = []
-const MAX_SCOREBOARD_LENGTH = 10
+const MAX_SCOREBOARD_LENGTH = 5
 const SAVE_PATH = "user://scoreboard.json"
+const SCOREBOARD_PATH = "Camera/UI/ScoreBoard"
 
 class Ranking:
 	var name: String
@@ -20,6 +21,7 @@ class Ranking:
 
 func _ready() -> void:
 	loadScores()
+	renderScoreBoard()
 	
 
 func rankScore(score) -> int:
@@ -41,6 +43,7 @@ func writeScores():
 		writeData.append(entry.as_dict())
 	file.store_string(JSON.stringify(writeData))
 	file.close()
+	renderScoreBoard()
 
 func loadScores():
 	var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
@@ -66,3 +69,13 @@ func submitScore(score):
 		
 	print(scoreboard)
 	writeScores()
+
+# Brute forcing for now will think about ways to use get_children to make this easier
+func renderScoreBoard():
+	var count = 0
+	var placementNames = ["First", "Second", "Third", "Fourth", "Fifth"]
+	for entry in scoreboard:
+		get_tree().current_scene.get_node(SCOREBOARD_PATH + "/" + placementNames[count] + "PlaceName").text = entry.name
+		get_tree().current_scene.get_node(SCOREBOARD_PATH + "/" + placementNames[count] + "PlaceScore").text = "%d" % entry.score
+		count = count + 1
+	return
