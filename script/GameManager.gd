@@ -11,6 +11,7 @@ var stage_time: int = 0
 func _ready() -> void:
 	$Camera/UI/RestartLabel.visible = false
 	$Camera/UI/GameOverLabel.visible = false
+	$Camera/UI/ScoreBoard.visible = false
 	start_game()
 	win.connect($"/root/Score".submitScore)
 	
@@ -55,6 +56,7 @@ func _on_player_death() -> void:
 
 
 func _on_respawn_delay_timer_timeout() -> void:
+	$Camera/UI/ScoreBoard.visible = true
 	$Camera/UI/RestartLabel.visible = true
 
 func _input(event: InputEvent) -> void:

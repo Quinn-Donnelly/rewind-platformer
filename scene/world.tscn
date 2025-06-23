@@ -80,6 +80,76 @@ offset_right = 89.0
 offset_bottom = 23.0
 text = "Time"
 
+[node name="ScoreBoard" type="GridContainer" parent="Camera/UI"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -196.0
+offset_right = 256.0
+offset_bottom = 124.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+columns = 3
+
+[node name="FirstPlace" type="Label" parent="Camera/UI/ScoreBoard"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1"
+
+[node name="FirstPlaceName" type="Label" parent="Camera/UI/ScoreBoard"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Quinn"
+
+[node name="FirstPlaceScore" type="Label" parent="Camera/UI/ScoreBoard"]
+layout_mode = 2
+text = "150"
+
+[node name="SecondPlace" type="Label" parent="Camera/UI/ScoreBoard"]
+layout_mode = 2
+text = "2"
+
+[node name="SecondPlaceName" type="Label" parent="Camera/UI/ScoreBoard"]
+layout_mode = 2
+
+[node name="SecondPlaceScore" type="Label" parent="Camera/UI/ScoreBoard"]
+layout_mode = 2
+
+[node name="ThirdPlace" type="Label" parent="Camera/UI/ScoreBoard"]
+layout_mode = 2
+text = "3"
+
+[node name="ThirdPlaceName" type="Label" parent="Camera/UI/ScoreBoard"]
+layout_mode = 2
+
+[node name="ThirdPlaceScore" type="Label" parent="Camera/UI/ScoreBoard"]
+layout_mode = 2
+
+[node name="FourthPlace" type="Label" parent="Camera/UI/ScoreBoard"]
+layout_mode = 2
+text = "4"
+
+[node name="FourthPlaceName" type="Label" parent="Camera/UI/ScoreBoard"]
+layout_mode = 2
+
+[node name="FourthPlaceScore" type="Label" parent="Camera/UI/ScoreBoard"]
+layout_mode = 2
+
+[node name="FifthPlace" type="Label" parent="Camera/UI/ScoreBoard"]
+layout_mode = 2
+
+[node name="FifthPlaceName" type="Label" parent="Camera/UI/ScoreBoard"]
+layout_mode = 2
+
+[node name="FifthPlaceScore" type="Label" parent="Camera/UI/ScoreBoard"]
+layout_mode = 2
+
 [node name="Levels" type="Node" parent="."]
 
 [node name="Level 1" parent="Levels" instance=ExtResource("4_m5mgf")]
