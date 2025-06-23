@@ -48,7 +48,6 @@ func win_game() -> void:
 	$Camera/UI/WinLabel.visible = true
 	$Camera/UI/RespawnDelayTimer.start();
 	$"/root/Score".submitScore(score)
-	$"/root/Score".writeScores()
 
 func _on_player_death() -> void:
 	game_over()

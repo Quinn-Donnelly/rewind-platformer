@@ -64,3 +64,4 @@ func submitScore(score):
 		scoreboard.resize(MAX_SCOREBOARD_LENGTH)
 		
 	print(scoreboard)
+	writeScores()
