@@ -79,3 +79,6 @@ func renderScoreBoard():
 		get_tree().current_scene.get_node(SCOREBOARD_PATH + "/" + placementNames[count] + "PlaceScore").text = "%d" % entry.score
 		count = count + 1
 	return
+
+func usernameSubmit(name: String):
+	print("Username submitted: %s" % name)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bw1l6gpxxakm5"]
+[gd_scene load_steps=12 format=3 uid="uid://bw1l6gpxxakm5"]
 
 [ext_resource type="Script" uid="uid://bdxvdi0i7ryd1" path="res://script/GameManager.gd" id="1_hcb8y"]
 [ext_resource type="PackedScene" uid="uid://cc0oap1ildecq" path="res://scene/player.tscn" id="1_pjass"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://dlbb0rqmi6ljg" path="res://script/camera.gd" id="4_emkrx"]
 [ext_resource type="PackedScene" uid="uid://bej8v2maxefne" path="res://scene/Levels/level_1.tscn" id="4_m5mgf"]
 [ext_resource type="PackedScene" uid="uid://dq1lp2w8aecji" path="res://scene/Levels/level_0.tscn" id="5_0tg4p"]
+[ext_resource type="Script" uid="uid://c62qv6jqgq8wr" path="res://addons/onscreenkeyboard/onscreen_keyboard.gd" id="5_7ghph"]
+[ext_resource type="Script" uid="uid://3nru8sh4l2n3" path="res://scene/username.gd" id="5_na5tu"]
 [ext_resource type="PackedScene" uid="uid://djdyjw67hqg5r" path="res://scene/win_flag.tscn" id="5_y3jn2"]
 [ext_resource type="PackedScene" uid="uid://dn2y0c3nl8tvd" path="res://scene/Levels/level_3.tscn" id="6_hcb8y"]
 [ext_resource type="PackedScene" uid="uid://ofeddhxi1jcj" path="res://scene/collectable.tscn" id="9_yur6x"]
@@ -81,7 +83,6 @@ offset_bottom = 23.0
 text = "Time"
 
 [node name="ScoreBoard" type="GridContainer" parent="Camera/UI"]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -143,12 +144,30 @@ layout_mode = 2
 
 [node name="FifthPlace" type="Label" parent="Camera/UI/ScoreBoard"]
 layout_mode = 2
+text = "5"
 
 [node name="FifthPlaceName" type="Label" parent="Camera/UI/ScoreBoard"]
 layout_mode = 2
 
 [node name="FifthPlaceScore" type="Label" parent="Camera/UI/ScoreBoard"]
 layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="Camera/UI"]
+offset_left = 512.0
+offset_top = 416.0
+offset_right = 640.0
+offset_bottom = 448.0
+caret_blink = true
+script = ExtResource("5_na5tu")
+
+[node name="OnscreenKeyboard" type="PanelContainer" parent="Camera/UI"]
+visible = false
+offset_left = 270.0
+offset_top = 935.0
+offset_right = 766.0
+offset_bottom = 1079.0
+script = ExtResource("5_7ghph")
+metadata/_custom_type_script = "uid://c62qv6jqgq8wr"
 
 [node name="Levels" type="Node" parent="."]
 
@@ -171,5 +190,7 @@ score = 5
 [connection signal="win" from="." to="Player" method="_on_world_win"]
 [connection signal="death" from="Player" to="." method="_on_player_death"]
 [connection signal="timeout" from="Camera/UI/RespawnDelayTimer" to="." method="_on_respawn_delay_timer_timeout"]
+[connection signal="text_changed" from="Camera/UI/LineEdit" to="Camera/UI/LineEdit" method="_on_text_changed"]
+[connection signal="text_submitted" from="Camera/UI/LineEdit" to="Camera/UI/LineEdit" method="_on_text_submitted"]
 [connection signal="win" from="WinFlag" to="." method="_on_win_flag_win"]
 [connection signal="scored" from="Collectable" to="." method="_on_collectable_scored"]

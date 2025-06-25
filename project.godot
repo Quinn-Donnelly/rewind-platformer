@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 Score="*res://script/score.gd"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/onscreenkeyboard/plugin.cfg")
+
 [input]
 
 move_right={
